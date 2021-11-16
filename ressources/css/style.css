@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+:root {
+    --main-color-bg: #051221;
+    --main-color-text: #80b2ed;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+    overflow: hidden;
+}
+
+a {
+    
+    text-decoration: none;
+    color: var(--main-color-text);
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+
+    background-color: thistle;
+}
+
+
+header {
+    width: 100%;
+    height: 100px ;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+
+    background-color: var(--main-color-bg);
+
+    color: var(--main-color-text);
+
+    transition: 2.5s;
+}
+
+.page_content {
+
+    width: 100%;
+    height:  calc(100% - 100px);
+
+    display: flex;
+
+    background-color: green;
+}
+
+
+aside {
+    width: 15vw;
+    height: 100%;
+
+    background-color: var(--main-color-bg);
+}
+
+.menu {
+    margin-top: 80px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_link {
+    width: 100%;
+
+    background-color: #051221;
+    padding: 10px;
+    text-align: center;
+    border-bottom: black 1px solid;
+    
+    text-decoration: none;
+    color: #80b2ed;
+    transition: 0.5s ease-out;
+}
+
+.menu_link:hover {
+
+    background-color:#80b2ed;
+    color: #051221;
+}
+
+.main_content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: purple;
+}
+
+.item_content {
+    width: 200px;
+    height: 200px;
+
+    background-color: sandybrown;
+}

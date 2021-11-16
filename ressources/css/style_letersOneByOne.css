@@ -1,0 +1,26 @@
+.headerOnLoad {
+    height: 100vh;
+}
+
+header > div > span {
+    transition: 2s;
+}
+
+.letter {
+    color: #4d4d4d;
+    font-size: 180px;
+    transition: 0.5s;
+}
+
+.letterDone {
+    font-size: 45px;
+}
+
+.change_color_load {
+    color: var(--main-color-text);
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
