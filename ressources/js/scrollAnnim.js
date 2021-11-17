@@ -10,51 +10,58 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let index = 0
     let nbItems = items.length
     console.log(nbItems);
-    let rightItem
-    let n = 0;
+    
+    let inMotion = false;
+
     document.addEventListener('wheel', (e) => {
-        e.preventDefault()
-        activeItem  = document.querySelector('.active')
-        topItem  = document.querySelector('.top')
-        console.log(activeItem);
-        let item = items[index]
-        if(e.wheelDeltaY < 0)
+        if(!inMotion)
         {
+            inMotion=true
             
-            if(item)
+            if(e.wheelDeltaY < 0)
             {
-                item.classList.remove('right')
-                setTimeout(()=>{
-                    item.classList.add('active')
-                    index++
-                }, 00)
-                item.style.transform = 'translateX(0px)'
+                console.log("scroll down")
+                let item = items[index]
+                let activeItem = items[index-1]
                 
+                if(item)
+                {
+                    item.classList.remove('right')
+                    item.classList.add('active')
+                    item.style.transform = 'translateX(0px)'
+                    
+                }
+                if(activeItem) {
+                    activeItem.classList.remove('active')
+                    activeItem.classList.add('top')
+                    activeItem.style.transform = 'translateY(-'+decal+'px)'
+                }
+                setTimeout(()=>{
+                    index++
+                    inMotion=false
+                }, 1000)
             }
-            if(activeItem) {
-                activeItem.classList.remove('active')
-                activeItem.classList.add('top')
-                activeItem.style.transform = 'translateY(-'+decal+'px)'
-            }
-        }
-        else
-        {
-            if(item)
+            else
             {
-                item.classList.remove('right')
+                console.log("scroll up")
+                let topItem = items[index-2]
+                let activeItem = items[index-1]
+                if(topItem)
+                {
+                    topItem.style.transform = 'translateY(0px)'
+                    
+                }
+                if(activeItem) {
+                    activeItem.style.transform = 'translateX('+decal+'px)'
+                }
                 setTimeout(()=>{
-                    item.classList.add('active')
-                    index++
-                }, 00)
-                item.style.transform = 'translateX(0px)'
-                
+                    index = index<1 ? 0 : index-1
+                    inMotion=false
+                }, 1000)
             }
-            if(activeItem) {
-                activeItem.classList.remove('active')
-                activeItem.classList.add('top')
-                activeItem.style.transform = 'translateY(-'+decal+'px)'
-            }
+            console.log(index)
         }
+        
         
         // if(topItem) {
         //     topItem.classList.remove('top')
