@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let inMotion = false;
 
     document.addEventListener('wheel', (e) => {
+        
+        console.log(e.deltaY());
         if(!inMotion)
         {
             inMotion=true
