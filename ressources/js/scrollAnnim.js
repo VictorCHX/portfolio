@@ -12,24 +12,50 @@ document.addEventListener('DOMContentLoaded', ()=> {
     console.log(nbItems);
     let rightItem
     let n = 0;
-    document.addEventListener('mousewheel', () => {
+    document.addEventListener('wheel', (e) => {
+        e.preventDefault()
         activeItem  = document.querySelector('.active')
         topItem  = document.querySelector('.top')
+        console.log(activeItem);
         let item = items[index]
-        if(item)
+        if(e.wheelDeltaY < 0)
         {
-            item.classList.remove('right')
-            setTimeout(()=>{
-                item.classList.add('active')
-            }, 2000)
-            item.style.transform = 'translateX(0px)'
-            index++
+            
+            if(item)
+            {
+                item.classList.remove('right')
+                setTimeout(()=>{
+                    item.classList.add('active')
+                    index++
+                }, 00)
+                item.style.transform = 'translateX(0px)'
+                
+            }
+            if(activeItem) {
+                activeItem.classList.remove('active')
+                activeItem.classList.add('top')
+                activeItem.style.transform = 'translateY(-'+decal+'px)'
+            }
         }
-        if(activeItem) {
-            activeItem.classList.remove('active')
-            activeItem.classList.add('top')
-            activeItem.style.transform = 'translateY(-'+decal+'px)'
+        else
+        {
+            if(item)
+            {
+                item.classList.remove('right')
+                setTimeout(()=>{
+                    item.classList.add('active')
+                    index++
+                }, 00)
+                item.style.transform = 'translateX(0px)'
+                
+            }
+            if(activeItem) {
+                activeItem.classList.remove('active')
+                activeItem.classList.add('top')
+                activeItem.style.transform = 'translateY(-'+decal+'px)'
+            }
         }
+        
         // if(topItem) {
         //     topItem.classList.remove('top')
         //     topItem.classList.add('right')
