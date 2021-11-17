@@ -4,20 +4,25 @@ document.addEventListener('DOMContentLoaded', ()=> {
     {
         const WaitTime = 800
         const offset = 1500
+        let lastDirection = 0
+        let directions = []
+        let index = 0
         let items  = document.querySelectorAll('.item_content')
         for (let item of items)
         {
-            TranslateRandom(item, offset)
+            translateRandom(item, offset, directions, index)
+            console.log(directions)
             //item.style.transform = 'translateX('+offset+'px)'
             item.classList.add('right')
+            index++
         }
-        let index = 0
+        index = 0
         let nbItems = items.length
         console.log(nbItems);
         
         let inMotion = false;
         let onWayDown
-    
+        
         document.addEventListener('wheel', (e) => {
             //console.log(e.deltaY);
             if(!inMotion && (e.deltaY>20 || e.deltaY<-20))
@@ -39,7 +44,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     if(activeItem) {
                         activeItem.classList.remove('active')
                         activeItem.classList.add('top')
-                        TranslateRandom(activeItem, offset)
+                        translateRandom(activeItem, offset, directions, index)
                         //activeItem.style.transform = 'translateY(-'+offset+'px)'
                     }
                     setTimeout(()=>{
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         
                     }
                     if(activeItem) {
-                        TranslateRandom(activeItem, offset)
+                        translateRandom(activeItem, offset, directions, index)
                         //activeItem.style.transform = 'translateX('+offset+'px)'
                     }
                     index = index<1 ? 0 : index -1
@@ -69,7 +74,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     }
                     else inMotion=false
                 }
-                console.log(index)
+                //console.log(index)
             }
             
             
@@ -79,15 +84,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
     
 })
 
-function TranslateRandom(item, offset)
+function translateRandom(item, offset, directions, index)
 {
-    let side = getRandomInt(1, 4)
-    if(side == 1) {
+    directions[index] = getRandomInt(0, 3)
+    
+    while(directions[index-1] == directions[index] || directions[index+1] == directions[index])
+        directions[index] = (directions[index]+1)%3
+    console.log(directions[index-1])
+    console.log(directions[index])
+    console.log(directions[index+1])
+    if(directions[index] == 0) {
         item.style.transform = 'translateX('+offset+'px)'
-    } else if(side == 2) {
+    } else if(directions[index] == 1) {
         item.style.transform = 'translateY('+offset+'px)'
     }
-    else if(side == 3) {
+    else if(directions[index] == 2) {
         item.style.transform = 'translateX(-'+offset+'px)'
     }
     else {
