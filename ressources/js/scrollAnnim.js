@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     if(activeItem) {
                         activeItem.classList.remove('active')
                         activeItem.classList.add('top')
-                        translateRandom(activeItem, offset, directions, index)
+                        translateRandom(activeItem, offset, directions, index-1)
                         //activeItem.style.transform = 'translateY(-'+offset+'px)'
                     }
                     setTimeout(()=>{
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         
                     }
                     if(activeItem) {
-                        translateRandom(activeItem, offset, directions, index)
+                        translateRandom(activeItem, offset, directions, index-1)
                         //activeItem.style.transform = 'translateX('+offset+'px)'
                     }
                     index = index<1 ? 0 : index -1
@@ -87,7 +87,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
 function translateRandom(item, offset, directions, index)
 {
     directions[index] = getRandomInt(0, 3)
-    
+    console.log(directions[index-1])
+    console.log(directions[index])
+    console.log(directions[index+1])
+    console.log("AAAAAAAAAAAAAAAAAA");
     while(directions[index-1] == directions[index] || directions[index+1] == directions[index])
         directions[index] = (directions[index]+1)%3
     console.log(directions[index-1])
@@ -97,11 +100,9 @@ function translateRandom(item, offset, directions, index)
         item.style.transform = 'translateX('+offset+'px)'
     } else if(directions[index] == 1) {
         item.style.transform = 'translateY('+offset+'px)'
-    }
-    else if(directions[index] == 2) {
+    } else if(directions[index] == 2) {
         item.style.transform = 'translateX(-'+offset+'px)'
-    }
-    else {
+    } else {
         item.style.transform = 'translateY(-'+offset+'px)'
     }
 }
