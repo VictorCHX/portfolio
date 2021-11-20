@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     // ...then set the internal size to match
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    let circles = [new Circle({x:12*tileSize,y:12*tileSize})]
+    let circles = []
     let ctx = canvas.getContext('2d');
         
     displayGrid(canvas, ctx)
@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     function drawBalls() {
         for(let circle of circles) {
+            if(circle.pos.x < 0 || circle.pos.y < 0 || circle.pos.x > canvas.width || circle.pos.y > canvas.height)
+                circles.splice(circles.indexOf(circle),1)
             ctx.beginPath();
             ctx.arc(circle.pos.x, circle.pos.y, circle.size, 0, Math.PI*2);
             ctx.fillStyle = circle.color
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         displayGrid()
         drawBalls();
-        // console.log(circles)
+        console.log(circles)
     }
 
     function displayGrid()
