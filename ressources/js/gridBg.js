@@ -1,81 +1,5 @@
 const tileSize = 40
 
-class Circle {
-    directions = {
-        HAUT: 0,
-        BAS: 1,
-        DROITE: 2,
-        GAUCHE: 3,
-    }
-    tileSize = 40
-    pos = {
-        x:0,
-        y:0
-    }
-    size = 10
-    speed = 2
-    direction = 0
-    constructor(pos) {
-        this.pos = pos
-        this.setRandomDirection()
-    }
-
-    move() {
-        if(this.direction >= 2)
-        {
-            if(this.pos.x % tileSize == 1 ||this.pos.x % tileSize == 2)
-            {
-                this.setRandomDirection()
-                this.avance()
-            }
-        } else {
-            if(this.pos.y % tileSize == 1 ||this.pos.y % tileSize == 2)
-            {
-                this.setRandomDirection()
-                console.log("change");
-                this.avance()
-            }
-        }
-        
-        this.avance()
-
-            
-            console.log(this.pos.y % tileSize, this.pos.x % tileSize, this.direction)
-    }
-    avance() {
-        if(this.direction == 0) {
-            this.pos.y -= this.speed
-        } else if(this.direction == 1)
-        {
-            this.pos.y += this.speed
-        } else if(this.direction == 2)
-        {
-            this.pos.x += this.speed
-        } else {
-            this.pos.x -= this.speed
-        }
-    }
-
-    setRandomDirection()
-    {
-        let lastDir = this.direction 
-        this.direction = getRandomInt(0,3)
-        if(lastDir == 0) {
-            while(this.direction == 1)
-                this.direction = getRandomInt(0,3)
-        } else if(lastDir == 1) {
-            while(this.direction == 0)
-                this.direction = getRandomInt(0,3)
-        } else if(lastDir == 2) {
-            while(this.direction == 3)
-                this.direction = getRandomInt(0,3)
-        } else {
-            while(this.direction == 2)
-                this.direction = getRandomInt(0,3)
-        }
-    }
-}
-
 document.addEventListener('DOMContentLoaded', ()=> {
 
 
@@ -95,7 +19,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         for(let circle of circles) {
             ctx.beginPath();
             ctx.arc(circle.pos.x, circle.pos.y, circle.size, 0, Math.PI*2);
-            ctx.fillStyle = "#0095DD";
+            ctx.fillStyle = circle.color
             ctx.fill();
             ctx.closePath();
             circle.move()
@@ -134,7 +58,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         if(pos.x % tileSize == 1 || pos.y % tileSize == 1)
         {
-            circles.push(new Circle(pos))
+            
+                circles.push(new Circle(pos))
         }
 
     })
