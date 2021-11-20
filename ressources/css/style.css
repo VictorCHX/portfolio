@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 :root {
-    --main-color-bg: #051221;
+    /* --main-color-bg: #051221; */
+    --main-color-bg: rgb(22,35,51);
     --main-color-text: #80b2ed;
 }
 
@@ -10,7 +11,7 @@
 
     box-sizing: border-box;
     font-family: 'Inconsolata', monospace;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 a {
@@ -72,14 +73,18 @@ aside {
 .menu_link {
     width: 100%;
 
-    background-color: #051221;
+    background-color: rgb(5,18,33);
     padding: 10px;
     text-align: center;
-    border-bottom: black 1px solid;
+    border-bottom: #80b2ed 1px solid;
     
     text-decoration: none;
     color: #80b2ed;
     transition: 0.5s ease-out;
+}
+
+.menu_link:first-child {
+    border-top: #80b2ed 1px solid;
 }
 
 .menu_link:hover {
@@ -96,7 +101,13 @@ aside {
     justify-content: center;
     align-items: center;
 
-    background-color: purple;
+    background-color: rgb(5,18,33);
+}
+
+#grid-canvas {
+    width: 100%;
+    height: 100%;
+    padding: 0;
 }
 
 .item_content {
