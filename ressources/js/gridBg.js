@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             x: Math.floor(e.offsetX),
             y: Math.floor(e.offsetY)
         }
-        if(pos.x % tileSize == 1 || pos.y % tileSize == 1)
+        if(pos.x % tileSize < 3 || pos.y % tileSize < 3)
         {
             
                 circles.push(new Circle(pos))

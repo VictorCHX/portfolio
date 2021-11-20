@@ -10,7 +10,7 @@ class Circle {
         x:0,
         y:0
     }]
-    size = 10
+    size = 4
     speed = 2
     direction = 0
     color = '#80b2ed'
@@ -18,7 +18,7 @@ class Circle {
         this.pos = pos
         this.tileSize = tileSize
         this.setRandomDirection()
-        this.color = 'rgb('+getRandomInt(0,255)+','+getRandomInt(0,255)+','+getRandomInt(155,255)+')'
+        //this.color = 'rgb('+getRandomInt(0,255)+','+getRandomInt(0,255)+','+getRandomInt(155,255)+')'
     }
 
     move() {
