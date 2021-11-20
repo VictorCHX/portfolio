@@ -1,31 +1,78 @@
 const tileSize = 40
 
 class Circle {
+    directions = {
+        HAUT: 0,
+        BAS: 1,
+        DROITE: 2,
+        GAUCHE: 3,
+    }
     tileSize = 40
     pos = {
         x:0,
         y:0
-    } 
+    }
     size = 10
-    speed = 10
+    speed = 2
+    direction = 0
     constructor(pos) {
         this.pos = pos
         this.setRandomDirection()
     }
 
     move() {
-        this.pos.x += this.speed;
-        this.pos.y += this.speed;
-        if(this.pos.x % tileSize == 1 || this.pos.y % tileSize == 1)
+        if(this.direction >= 2)
         {
-            this.setRandomDirection()
-            //console.log(this);
+            if(this.pos.x % tileSize == 1 ||this.pos.x % tileSize == 2)
+            {
+                this.setRandomDirection()
+                this.avance()
+            }
+        } else {
+            if(this.pos.y % tileSize == 1 ||this.pos.y % tileSize == 2)
+            {
+                this.setRandomDirection()
+                console.log("change");
+                this.avance()
+            }
+        }
+        
+        this.avance()
+
+            
+            console.log(this.pos.y % tileSize, this.pos.x % tileSize, this.direction)
+    }
+    avance() {
+        if(this.direction == 0) {
+            this.pos.y -= this.speed
+        } else if(this.direction == 1)
+        {
+            this.pos.y += this.speed
+        } else if(this.direction == 2)
+        {
+            this.pos.x += this.speed
+        } else {
+            this.pos.x -= this.speed
         }
     }
 
     setRandomDirection()
     {
-        this.speed = Math.floor(-1 + Math.random() * 3)*30
+        let lastDir = this.direction 
+        this.direction = getRandomInt(0,3)
+        if(lastDir == 0) {
+            while(this.direction == 1)
+                this.direction = getRandomInt(0,3)
+        } else if(lastDir == 1) {
+            while(this.direction == 0)
+                this.direction = getRandomInt(0,3)
+        } else if(lastDir == 2) {
+            while(this.direction == 3)
+                this.direction = getRandomInt(0,3)
+        } else {
+            while(this.direction == 2)
+                this.direction = getRandomInt(0,3)
+        }
     }
 }
 
@@ -38,8 +85,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     // ...then set the internal size to match
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    let circles = [new Circle({x:0,y:0})]
-    
+    let circles = [new Circle({x:12*tileSize,y:12*tileSize})]
     let ctx = canvas.getContext('2d');
         
     displayGrid(canvas, ctx)
@@ -60,7 +106,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         displayGrid()
         drawBalls();
-        
+        // console.log(circles)
     }
 
     function displayGrid()
@@ -93,7 +139,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     })
     
-    setInterval(draw, 100);
+    setInterval(draw, 5);
 })
 
 function getRandomInt(min, max) {
