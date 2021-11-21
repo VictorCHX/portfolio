@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             if(circle.pos.x < 0 || circle.pos.y < 0 || circle.pos.x > canvas.width || circle.pos.y > canvas.height)
                 circles.splice(circles.indexOf(circle),1)
             ctx.beginPath();
-            ctx.arc(circle.pos.x, circle.pos.y, circle.size, 0, Math.PI*2);
+            ctx.arc(circle.pos.x-circle.size/2, circle.pos.y-circle.size/2, circle.size, 0, Math.PI*2);
             ctx.fillStyle = circle.color
             ctx.fill();
             ctx.closePath();
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         displayGrid()
         drawBalls();
-        console.log(circles)
     }
 
     function displayGrid()
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         if(pos.x % tileSize < 3 || pos.y % tileSize < 3)
         {
-            
                 circles.push(new Circle(pos))
         }
 

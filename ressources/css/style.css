@@ -11,7 +11,19 @@
 
     box-sizing: border-box;
     font-family: 'Inconsolata', monospace;
-    /* overflow: hidden; */
+    overflow: hidden;
+    cursor:none;
+}
+
+#cursor {
+    z-index: 1000;
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: -100vh;
+    mix-blend-mode: difference;
+    background-color: white;
 }
 
 a {
@@ -30,7 +42,7 @@ body {
 
 header {
     width: 100%;
-    height: 100px ;
+    height: 60px ;
 
     display: flex;
     justify-content: center;
@@ -59,7 +71,7 @@ header > div {
 .page_content {
 
     width: 100%;
-    height:  calc(100% - 100px);
+    height:  100%;
 
     display: flex;
 
@@ -68,12 +80,21 @@ header > div {
 
 
 aside {
-    width: 15vw;
+    width: 20vw;
     height: 100%;
 
     background-color: var(--main-color-bg);
     position: relative;
+    display:flex;
+    flex-direction: column;
     z-index: 1;
+}
+
+.img-logo{
+    width: 100%;  
+}
+.img-logo img{
+    width: 100%;
 }
 
 .menu {
@@ -82,7 +103,9 @@ aside {
     display: flex;
     flex-direction: column;
 }
-
+footer {
+    align-self: flex-end;
+}
 .menu_link {
     width: 100%;
 
@@ -123,12 +146,49 @@ aside {
     padding: 0;
 }
 
-.item_content{
-    width: 60%;
-    height: 60%;
+#scroll-img {
     position: absolute;
-    background-color: var(--main-color-bg);
-    transition: transform 0.8s;  
-    border: #80b2ed solid 10px;
+    bottom: 5vh;
+    right: 5vw;
+    transition: 2s;
 }
+#scroll-img img{
+    width: 10vw;
+    height: 10vw;
+     
+}
+
+
+.slide_content{
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    background-color: #051221;
+    transition: transform 0.8s;  
+    border: #80b2ed solid 5px;
+    color: white;
+    padding: 2vw;
+}
+
+.slide_content h2 {
+    font-size: 3em;
+}
+
+.sport {
+    padding: 2vw;
+}
+.sports {
+    display: flex;
+}
+.sports div {
+    display: flex;
+    flex-direction: column;
+    padding: 2vw;
+}
+
+.sports div p{
+    padding-top: 2vw;
+    text-align:"justify";
+}
+
 

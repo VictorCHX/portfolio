@@ -10,7 +10,7 @@ class Circle {
         x:0,
         y:0
     }]
-    size = 4
+    size = 3
     speed = 2
     direction = 0
     color = '#80b2ed'

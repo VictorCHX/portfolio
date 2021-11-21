@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="ressources/css/style.css">
         <link rel="stylesheet" href="ressources/css/style_letersOneByOne.css">
 
+        <script src="ressources/js/main.js"></script>
         <script src="ressources/js/letersOneByOne.js"></script>
         <script src="ressources/js/scrollAnnim.js"></script>
-        <script src="ressources/js/classe.js"></script>
+        <script src="ressources/js/Circle.js"></script>
         <script src="ressources/js/gridBg.js"></script>
         
         <title>Lafarge Victor</title>
@@ -43,6 +44,9 @@
 
         <div class="page_content">
             <aside>
+                <div class='img-logo'>
+                    <img src="ressources/image/logoVictor.png" alt="Logo of Victor LAFARGE">
+                </div>
                 <div class="menu">
                     <a href="ressources/document/cv-victor-lafarge.pdf" class="menu_link" target="_blank">
                         My resume
@@ -54,6 +58,11 @@
                         My projects
                     </a>
                 </div>
+                <footer>
+                    <div> 
+                            victor.lafargchx@gmail.com
+                    </div>
+                </footer>
             </aside>
 
 
@@ -61,17 +70,41 @@
 
                 <canvas id="grid-canvas"></canvas>
 
-                <div class="item_content">1</div>
-                <div class="item_content">2</div>
-                <div class="item_content">3</div>
-                <div class="item_content">4</div>
-                <div class="item_content">5</div>
-                <div class="item_content">6</div>
-                <div class="item_content">7</div>
-                <div class="item_content">8</div>
-                <div class="item_content">9</div>
+                <div class="slide_content">
+                    <h2>Miscellaneous</h2>
+                    <div class="sport">
+                        <h3>Sports</h3>
+                        <div class="sports">
+                            <div>
+                                <img src="ressources/image/parapente-victor.jpg" alt="Picture of Victor paragliding in front of the mont blanc massif and the Chamonix Valley">
+                                <div>
+                                    <p>Three years ago, I learned to paraglide and and I fell in love with this sport</p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="ressources/image/ski-victor.jpg" alt="Picture of Victor at the top of a mountain with his skis on his back, in front of the mont blanc massif and the Chamonix Valley">
+                                <p>Born in Chamonix, I have always practiced all types of skiing. I practiced Alpine skiing at a high level until 2019.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide_content">
+                    <h2>IT STUDENT</h2>
+                    <h3>Second year</h3>
+                </div>
+                <div class="slide_content">3</div>
+                <div class="slide_content">4</div>
+                <div class="slide_content">5</div>
+                <div class="slide_content">6</div>
+                <div class="slide_content">7</div>
+                <div class="slide_content">8</div>
+                <div class="slide_content">9</div>
+                
+                <div id="scroll-img">
+                    <img src="ressources/image/scroll2.png" alt="icon who said to scroll">
+                </div>
             </div>
         </div>
-        
+    <div id="cursor"></div>
     </body>
 </html>

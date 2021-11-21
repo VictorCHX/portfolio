@@ -2,61 +2,85 @@
 document.addEventListener('DOMContentLoaded', ()=> {
     if(window.innerWidth > 765)
     {
-        const WaitTime = 800
-        let items  = document.querySelectorAll('.item_content')
-        const offset = items[0].clientWidth + 1000
+        const WaitTime = 600
+        let scrollIcon = document.querySelector('#scroll-img');
+        scrollIcon.style.transform = 'translateY('+50+'vh)'
+        let haveAlredyScroll = false
+
+        setTimeout(()=>{
+            if(!haveAlredyScroll)
+            {
+                scrollIcon.style.transform = 'translateY('+0+'vh)'
+                let isDown = true
+                setInterval(() => {
+                    if(!haveAlredyScroll)
+                    {
+                        scrollIcon.style.transform = 'translateY('+(isDown ?5:0)+'vh)'
+                        isDown = !isDown
+                    }
+                }, 2000);
+            }
+
+        },6000)
+        let slides  = document.querySelectorAll('.slide_content')
+        const offset = slides[0].clientWidth + 1000
         let directions = []
         let index = 0
         
-        for (let item of items)
+        for (let slide of slides)
         {
-            translateRandom(item, offset, directions, index)
-            console.log(directions)
-            item.classList.add('right')
+            translateRandom(slide, offset, directions, index)
+            // console.log(directions)
+            slide.classList.add('right')
             index++
         }
         index = 0
-        let nbItems = items.length
+        let nbSlides = slides.length
         
         let inMotion = false;
         
         document.addEventListener('wheel', (e) => {
             if(!inMotion && (e.deltaY>20 || e.deltaY<-20))
             {
+                if(!haveAlredyScroll)
+                {
+                    scrollIcon.style.transform = 'translateY('+50+'vh)'
+                }
+                haveAlredyScroll = true
                 inMotion=true
                 
                 if(e.wheelDeltaY < 0) {
                     console.log("scroll down")
-                    let item = items[index]
-                    let activeItem = items[index-1]
+                    let slide = slides[index]
+                    let activeSlide = slides[index-1]
                     
-                    if(item)
+                    if(slide)
                     {
-                        item.classList.remove('right')
-                        item.classList.add('active')
-                        item.style.transform = 'translateX(0px)'
+                        slide.classList.remove('right')
+                        slide.classList.add('active')
+                        slide.style.transform = 'translateX(0px)'
                         
                     }
-                    if(activeItem) {
-                        activeItem.classList.remove('active')
-                        activeItem.classList.add('top')
-                        translateRandom(activeItem, offset, directions, index-1)
+                    if(activeSlide) {
+                        activeSlide.classList.remove('active')
+                        activeSlide.classList.add('top')
+                        translateRandom(activeSlide, offset, directions, index-1)
                     }
                     setTimeout(()=>{
-                        index = index>=nbItems+1 ? nbItems+1 : index+1
+                        index = index>=nbSlides+1 ? nbSlides+1 : index+1
                         inMotion=false
                     }, WaitTime)
                 } else {
                     console.log("scroll up")
-                    let topItem = items[index-2]
-                    let activeItem = items[index-1]
-                    if(topItem)
+                    let topSlide = slides[index-2]
+                    let activeSlide = slides[index-1]
+                    if(topSlide)
                     {
-                        topItem.style.transform = 'translateY(0px)'
+                        topSlide.style.transform = 'translateY(0px)'
                         
                     }
-                    if(activeItem) {
-                        translateRandom(activeItem, offset, directions, index-1)
+                    if(activeSlide) {
+                        translateRandom(activeSlide, offset, directions, index-1)
                     }
                     index = index<1 ? 0 : index -1
                     if(index>0)
@@ -77,7 +101,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     
 })
 
-function translateRandom(item, offset, directions, index)
+function translateRandom(slide, offset, directions, index)
 {
     directions[index] = getRandomInt(0, 3)
 
@@ -85,13 +109,13 @@ function translateRandom(item, offset, directions, index)
         directions[index] = (directions[index]+1)%3
 
     if(directions[index] == 0) {
-        item.style.transform = 'translateX('+offset+'px)'
+        slide.style.transform = 'translateX('+offset+'px)'
     } else if(directions[index] == 1) {
-        item.style.transform = 'translateY('+offset+'px)'
+        slide.style.transform = 'translateY('+offset+'px)'
     } else if(directions[index] == 2) {
-        item.style.transform = 'translateX(-'+offset+'px)'
+        slide.style.transform = 'translateX(-'+offset+'px)'
     } else {
-        item.style.transform = 'translateY(-'+offset+'px)'
+        slide.style.transform = 'translateY(-'+offset+'px)'
     }
 }
 
