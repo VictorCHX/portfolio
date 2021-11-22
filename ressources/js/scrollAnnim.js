@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', ()=> {
     if(window.innerWidth > 765)
     {
@@ -50,29 +49,40 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 inMotion=true
                 
                 if(e.wheelDeltaY < 0) {
-                    console.log("scroll down")
-                    let slide = slides[index]
-                    let activeSlide = slides[index-1]
-                    
-                    if(slide)
-                    {
-                        slide.classList.remove('right')
-                        slide.classList.add('active')
-                        slide.style.transform = 'translateX(0px)'
-                        
-                    }
-                    if(activeSlide) {
-                        activeSlide.classList.remove('active')
-                        activeSlide.classList.add('top')
-                        translateRandom(activeSlide, offset, directions, index-1)
-                    }
-                    setTimeout(()=>{
-                        index = index>=nbSlides+1 ? nbSlides+1 : index+1
-                        inMotion=false
-                    }, WaitTime)
+                    advance()
                 } else {
-                    console.log("scroll up")
-                    let topSlide = slides[index-2]
+                    backOff()
+                }
+            }
+            
+            
+        });
+
+        function advance() {
+            let slide = slides[index]
+            let activeSlide = slides[index-1]
+            
+            if(slide)
+            {
+                slide.classList.remove('right')
+                slide.classList.add('active')
+                slide.style.transform = 'translateX(0px)'
+                
+            }
+            if(activeSlide) {
+                activeSlide.classList.remove('active')
+                activeSlide.classList.add('top')
+                translateRandom(activeSlide, offset, directions, index-1)
+            }
+            setTimeout(()=>{
+                index = index>=nbSlides+1 ? nbSlides+1 : index+1
+                inMotion=false
+            }, WaitTime)
+        }
+    }
+
+    function backOff(){ 
+        let topSlide = slides[index-2]
                     let activeSlide = slides[index-1]
                     if(topSlide)
                     {
@@ -91,15 +101,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         }, WaitTime)
                     }
                     else inMotion=false
-                }
-            }
-            
-            
-        });
-    }
+    } 
 
     
 })
+
 
 function translateRandom(slide, offset, directions, index)
 {

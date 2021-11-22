@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             ctx.lineTo(canvas.width,y);
         }
         
-        ctx.strokeStyle='white';
+        ctx.strokeStyle='#80b2ed';
         ctx.stroke();
         ctx.closePath();
     }
