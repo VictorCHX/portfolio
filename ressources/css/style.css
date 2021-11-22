@@ -89,6 +89,7 @@ aside {
     flex-direction: column;
     justify-content: space-between;
     z-index: 1;
+    /* border-right: #80b2ed 1px; */
 }
 
 .img-logo{

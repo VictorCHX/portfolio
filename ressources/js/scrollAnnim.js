@@ -79,31 +79,28 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 inMotion=false
             }, WaitTime)
         }
+        function backOff(){ 
+            let topSlide = slides[index-2]
+            let activeSlide = slides[index-1]
+            if(topSlide)
+            {
+                topSlide.style.transform = 'translateY(0px)'
+                
+            }
+            if(activeSlide) {
+                translateRandom(activeSlide, offset, directions, index-1)
+            }
+            index = index<1 ? 0 : index -1
+            if(index>0)
+            {
+                setTimeout(()=>{
+                    
+                    inMotion=false
+                }, WaitTime)
+            }
+            else inMotion=false
+        } 
     }
-
-    function backOff(){ 
-        let topSlide = slides[index-2]
-                    let activeSlide = slides[index-1]
-                    if(topSlide)
-                    {
-                        topSlide.style.transform = 'translateY(0px)'
-                        
-                    }
-                    if(activeSlide) {
-                        translateRandom(activeSlide, offset, directions, index-1)
-                    }
-                    index = index<1 ? 0 : index -1
-                    if(index>0)
-                    {
-                        setTimeout(()=>{
-                            
-                            inMotion=false
-                        }, WaitTime)
-                    }
-                    else inMotion=false
-    } 
-
-    
 })
 
 

@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     function displayGrid()
     {
         ctx.beginPath();
-        for(var x=-1;x<canvas.width;x+=tileSize) {
+        for(var x=0;x<canvas.width;x+=tileSize) {
             ctx.moveTo(x,0);
             ctx.lineTo(x,canvas.height);
         }
 
-        for(var y=-1; y<canvas.height; y+=tileSize) {
+        for(var y=0; y<canvas.height; y+=tileSize) {
             ctx.moveTo(0,y);
             ctx.lineTo(canvas.width,y);
         }
