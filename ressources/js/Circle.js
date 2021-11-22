@@ -13,7 +13,7 @@ class Circle {
     size = 3
     speed = 2
     direction = 0
-    color = '#80b2ed'
+    color = 'white'
     constructor(pos, tileSize = 40) {
         this.pos = pos
         this.tileSize = tileSize

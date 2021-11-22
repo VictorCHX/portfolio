@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=> {
     if(window.innerWidth > 765)
     {
-        const WaitTime = 600
+        const waitTime = 600
         let scrollIcon = document.querySelector('#scroll-img');
         scrollIcon.style.transform = 'translateY('+50+'vh)'
         let haveAlredyScroll = false
@@ -36,6 +36,42 @@ document.addEventListener('DOMContentLoaded', ()=> {
         index = 0
         let nbSlides = slides.length
         
+        let about_me_btn = document.querySelector('#about-me-btn')
+        let projects_btn = document.querySelector('#projects-btn')
+
+        about_me_btn.addEventListener("click", (e)=>{
+            e.preventDefault()
+            if( !inMotion)
+            {
+                inMotion=true
+                setTimeout(()=>{
+                    inMotion=false
+                }, waitTime)
+                let activeSlide = slides[index-1]
+                if(activeSlide) {
+                    translateRandom(activeSlide, offset, directions, index-1)
+                }
+                index = 0
+                advance()
+            }
+        })
+        projects_btn.addEventListener("click", (e)=>{
+            e.preventDefault()
+            if(!inMotion)
+            {
+                inMotion=true
+                setTimeout(()=>{
+                    inMotion=false
+                }, waitTime)
+                let activeSlide = slides[index-1]
+                if(activeSlide) {
+                    translateRandom(activeSlide, offset, directions, index-1)
+                }
+                index = 4
+                advance()
+            }
+        })
+
         let inMotion = false;
         
         document.addEventListener('wheel', (e) => {
@@ -47,12 +83,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 }
                 haveAlredyScroll = true
                 inMotion=true
-                
+                setTimeout(()=>{
+                    inMotion=false
+                }, waitTime)
                 if(e.wheelDeltaY < 0) {
                     advance()
                 } else {
                     backOff()
                 }
+                
             }
             
             
@@ -64,20 +103,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
             
             if(slide)
             {
-                slide.classList.remove('right')
-                slide.classList.add('active')
                 slide.style.transform = 'translateX(0px)'
                 
             }
             if(activeSlide) {
-                activeSlide.classList.remove('active')
-                activeSlide.classList.add('top')
                 translateRandom(activeSlide, offset, directions, index-1)
             }
-            setTimeout(()=>{
-                index = index>=nbSlides+1 ? nbSlides+1 : index+1
-                inMotion=false
-            }, WaitTime)
+            index = index>=nbSlides+1 ? nbSlides+1 : index+1
+            
         }
         function backOff(){ 
             let topSlide = slides[index-2]
@@ -91,14 +124,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 translateRandom(activeSlide, offset, directions, index-1)
             }
             index = index<1 ? 0 : index -1
-            if(index>0)
-            {
-                setTimeout(()=>{
-                    
-                    inMotion=false
-                }, WaitTime)
-            }
-            else inMotion=false
+            
         } 
     }
 })

@@ -53,7 +53,7 @@ header {
 
     color: var(--main-color-text);
 
-    transition: 2.5s;
+    transition: 1.7s;
     position: relative;
     z-index: 1;
 }
@@ -61,7 +61,7 @@ header {
 header > div {
     margin: 0px 15px 0px 15px;
 
-    transition: 2.5s;
+    transition: 1.7s;
 }
 
 .headerOnLoad > div {
@@ -104,8 +104,9 @@ aside {
     display: flex;
     flex-direction: column;
 }
-footer {
-    align-self: flex-end;
+footer div {
+    display: flex;
+    align-items: center;
 }
 .menu_link {
     width: 100%;
@@ -175,21 +176,6 @@ footer {
     font-size: 3em;
 }
 
-.sport {
-    padding: 2vw;
+.slide_content img {
+    width: 30%;
 }
-.sports {
-    display: flex;
-}
-.sports div {
-    display: flex;
-    flex-direction: column;
-    padding: 2vw;
-}
-
-.sports div p{
-    padding-top: 2vw;
-    text-align:"justify";
-}
-
-
