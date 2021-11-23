@@ -218,19 +218,19 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 
     function goTo(indexToGo) 
+    {
+        console.log(index, indexToGo);
+        if(indexToGo > index)
         {
-            console.log(index, indexToGo);
-            if(indexToGo > index)
-            {
-                for(let i = index; i < indexToGo; i++){
-                    advanceTactile()
-                }
-            } else {
-                for(let i = index; i > indexToGo; i--){
-                    backOffTactile()
-                }
+            for(let i = index; i < indexToGo; i++){
+                advanceTactile()
+            }
+        } else {
+            for(let i = index; i > indexToGo; i--){
+                backOffTactile()
             }
         }
+    }
     //---------------------------------------------------------------------------------------
 })
 
