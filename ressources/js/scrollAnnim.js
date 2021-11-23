@@ -62,13 +62,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
     })
 
+    let directions = []
 
     //(telephone)
     if(window.innerWidth > 765)
     {
         //-------------------Placement des slides en aleatoire sur grand ecran
-        let directions = []
-        
         
         for (let slide of slides)
         {
@@ -78,6 +77,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             index++
         }
         index = 0
+
     } else {
         //Placement des divs sur petit ecran (ex:tel)
         let index = 0
@@ -125,9 +125,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
         if(activeSlide) {
             translateRandom(activeSlide, offset, directions, index-1)
         }
-        index = index>=nbSlides+1 ? nbSlides+1 : index+1
-        
+        index = index>=nbSlides+1 ? nbSlides+1 : index+1   
     }
+
     function backOff(){ 
         let topSlide = slides[index-2]
         let activeSlide = slides[index-1]
