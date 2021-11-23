@@ -29,39 +29,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let about_me_btn = document.querySelector('#about-me-btn')
     let projects_btn = document.querySelector('#projects-btn')
 
-    about_me_btn.addEventListener("click", (e)=>{
-        e.preventDefault()
-        if( !inMotion)
-        {
-            inMotion=true
-            setTimeout(()=>{
-                inMotion=false
-            }, waitTime)
-            let activeSlide = slides[index-1]
-            if(activeSlide) {
-                translateRandom(activeSlide, offset, directions, index-1)
-            }
-            index = 0
-            advance()
-        }
-    })
-    projects_btn.addEventListener("click", (e)=>{
-        e.preventDefault()
-        if(!inMotion)
-        {
-            inMotion=true
-            setTimeout(()=>{
-                inMotion=false
-            }, waitTime)
-            let activeSlide = slides[index-1]
-            if(activeSlide) {
-                translateRandom(activeSlide, offset, directions, index-1)
-            }
-            index = 4
-            advance()
-        }
-    })
-
     let directions = []
 
     //(telephone)
@@ -78,6 +45,39 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         index = 0
 
+        about_me_btn.addEventListener("click", (e)=>{
+            e.preventDefault()
+            if( !inMotion)
+            {
+                inMotion=true
+                setTimeout(()=>{
+                    inMotion=false
+                }, waitTime)
+                let activeSlide = slides[index-1]
+                if(activeSlide) {
+                    translateRandom(activeSlide, offset, directions, index-1)
+                }
+                index = 0
+                advance()
+            }
+        })
+        projects_btn.addEventListener("click", (e)=>{
+            e.preventDefault()
+            if(!inMotion)
+            {
+                inMotion=true
+                setTimeout(()=>{
+                    inMotion=false
+                }, waitTime)
+                let activeSlide = slides[index-1]
+                if(activeSlide) {
+                    translateRandom(activeSlide, offset, directions, index-1)
+                }
+                index = 4
+                advance()
+            }
+        })
+
     } else {
         //Placement des divs sur petit ecran (ex:tel)
         let index = 0
@@ -90,6 +90,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         index = 0
 
+        about_me_btn.addEventListener("click", (e)=>{
+            e.preventDefault()
+            if( !inMotion)
+            {
+               goTo(1)
+            }
+        })
+        projects_btn.addEventListener("click", (e)=>{
+            e.preventDefault()
+            if(!inMotion)
+            {
+                goTo(4)
+            }
+        })
     }
 
     //----------------------------------Gestion deplacement scroll souris-----------------
@@ -202,6 +216,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         index = index<1 ? 0 : index -1
     }
+
+    function goTo(indexToGo) 
+        {
+            console.log(index, indexToGo);
+            if(indexToGo > index)
+            {
+                for(let i = index; i < indexToGo; i++){
+                    advanceTactile()
+                }
+            } else {
+                for(let i = index; i > indexToGo; i--){
+                    backOffTactile()
+                }
+            }
+        }
     
     //---------------------------------------------------------------------------------------
 })
