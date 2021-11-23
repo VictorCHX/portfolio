@@ -80,7 +80,7 @@ header > div {
 
 
 aside {
-    width: 20vw;
+    width: 25vw;
     height: calc(100% - 60px);
 
     background-color: var(--main-color-bg);
@@ -104,10 +104,25 @@ aside {
     display: flex;
     flex-direction: column;
 }
-footer div {
+
+footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1vw;
+}
+
+.footer div {
     display: flex;
     align-items: center;
+    color: var(--main-color-text);
+    padding:1vw;
+    
 }
+.footer div img{
+    padding: 0.5vw;
+    width: 2vw;
+}
+
 .menu_link {
     width: 100%;
 

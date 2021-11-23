@@ -1,30 +1,74 @@
 document.addEventListener('DOMContentLoaded', ()=> {
+    const waitTime = 600
+    let scrollIcon = document.querySelector('#scroll-img');
+    scrollIcon.style.transform = 'translateY('+50+'vh)'
+    let haveAlredyScroll = false
+    setTimeout(()=>{
+        if(!haveAlredyScroll)
+        {
+            scrollIcon.style.transform = 'translateY('+0+'vh)'
+            let isDown = true
+            setInterval(() => {
+                if(!haveAlredyScroll)
+                {
+                    scrollIcon.style.transform = 'translateY('+(isDown ?5:0)+'vh)'
+                    isDown = !isDown
+                }
+            }, 2000);
+        }
+        
+    },6000)
+    
+    let slides  = document.querySelectorAll('.slide_content')
+    const offset = slides[0].clientWidth + 1000
+    
+    let inMotion = false;
+
+    let index = 0
+
+    let about_me_btn = document.querySelector('#about-me-btn')
+    let projects_btn = document.querySelector('#projects-btn')
+
+    about_me_btn.addEventListener("click", (e)=>{
+        e.preventDefault()
+        if( !inMotion)
+        {
+            inMotion=true
+            setTimeout(()=>{
+                inMotion=false
+            }, waitTime)
+            let activeSlide = slides[index-1]
+            if(activeSlide) {
+                translateRandom(activeSlide, offset, directions, index-1)
+            }
+            index = 0
+            advance()
+        }
+    })
+    projects_btn.addEventListener("click", (e)=>{
+        e.preventDefault()
+        if(!inMotion)
+        {
+            inMotion=true
+            setTimeout(()=>{
+                inMotion=false
+            }, waitTime)
+            let activeSlide = slides[index-1]
+            if(activeSlide) {
+                translateRandom(activeSlide, offset, directions, index-1)
+            }
+            index = 4
+            advance()
+        }
+    })
+
+
+    //(telephone)
     if(window.innerWidth > 765)
     {
-        const waitTime = 600
-        let scrollIcon = document.querySelector('#scroll-img');
-        scrollIcon.style.transform = 'translateY('+50+'vh)'
-        let haveAlredyScroll = false
-
-        setTimeout(()=>{
-            if(!haveAlredyScroll)
-            {
-                scrollIcon.style.transform = 'translateY('+0+'vh)'
-                let isDown = true
-                setInterval(() => {
-                    if(!haveAlredyScroll)
-                    {
-                        scrollIcon.style.transform = 'translateY('+(isDown ?5:0)+'vh)'
-                        isDown = !isDown
-                    }
-                }, 2000);
-            }
-
-        },6000)
-        let slides  = document.querySelectorAll('.slide_content')
-        const offset = slides[0].clientWidth + 1000
+        
         let directions = []
-        let index = 0
+        
         
         for (let slide of slides)
         {
@@ -35,44 +79,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         index = 0
         let nbSlides = slides.length
-        
-        let about_me_btn = document.querySelector('#about-me-btn')
-        let projects_btn = document.querySelector('#projects-btn')
 
-        about_me_btn.addEventListener("click", (e)=>{
-            e.preventDefault()
-            if( !inMotion)
-            {
-                inMotion=true
-                setTimeout(()=>{
-                    inMotion=false
-                }, waitTime)
-                let activeSlide = slides[index-1]
-                if(activeSlide) {
-                    translateRandom(activeSlide, offset, directions, index-1)
-                }
-                index = 0
-                advance()
-            }
-        })
-        projects_btn.addEventListener("click", (e)=>{
-            e.preventDefault()
-            if(!inMotion)
-            {
-                inMotion=true
-                setTimeout(()=>{
-                    inMotion=false
-                }, waitTime)
-                let activeSlide = slides[index-1]
-                if(activeSlide) {
-                    translateRandom(activeSlide, offset, directions, index-1)
-                }
-                index = 4
-                advance()
-            }
-        })
-
-        let inMotion = false;
         
         document.addEventListener('wheel', (e) => {
             if(!inMotion && (e.deltaY>20 || e.deltaY<-20))
@@ -80,8 +87,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 if(!haveAlredyScroll)
                 {
                     scrollIcon.style.transform = 'translateY('+50+'vh)'
+                    haveAlredyScroll = true
                 }
-                haveAlredyScroll = true
                 inMotion=true
                 setTimeout(()=>{
                     inMotion=false
@@ -122,6 +129,79 @@ document.addEventListener('DOMContentLoaded', ()=> {
             }
             if(activeSlide) {
                 translateRandom(activeSlide, offset, directions, index-1)
+            }
+            index = index<1 ? 0 : index -1
+            
+        } 
+    } else {
+        //Gestion du scroll sur ecran tactile sur tel
+        let index = 0
+        
+        for (let slide of slides)
+        {
+            slide.style.transform = 'translateY('+offset+'px)'
+            // console.log(directions)
+            index++
+        }
+        index = 0
+        let nbSlides = slides.length
+
+
+        let lastTouchY
+        let firstEvent = true
+        document.addEventListener('touchmove', (e)=> {
+            if(firstEvent) {
+                firstEvent = false
+            } else {
+
+                if(!haveAlredyScroll)
+                {
+                    scrollIcon.style.transform = 'translateY('+50+'vh)'
+                    haveAlredyScroll = true
+                } 
+                if(!inMotion) {
+                    inMotion=true
+                    setTimeout(()=>{
+                        inMotion=false
+                        firstEvent = true
+                    }, waitTime)
+                    if(lastTouchY > e.targetTouches[0].clientY) {
+                        console.log("scroll up");
+                        advance()
+                    } else {
+                        console.log("scroll down");
+                        backOff()
+                    }
+                }
+            }
+            lastTouchY = e.targetTouches[0].clientY
+        }, false);
+
+        function advance() {
+            let nextSlide = slides[index]
+            let activeSlide = slides[index-1]
+            
+            if(nextSlide)
+            {
+                nextSlide.style.transform = 'translateY(0px)'
+                
+            }
+            if(activeSlide) {
+                activeSlide.style.transform = 'translateY(-'+offset+'px)'
+            }
+            index = index>=nbSlides+1 ? nbSlides+1 : index+1
+            
+        }
+        function backOff(){ 
+            let outSlide = slides[index-2]
+            let activeSlide = slides[index-1]
+            if(outSlide)
+            {
+                outSlide.style.transform = 'translateY(0px)'
+                
+            }
+            if(activeSlide) {
+                activeSlide.style.transform = 'translateY('+offset+'px)'
             }
             index = index<1 ? 0 : index -1
             
