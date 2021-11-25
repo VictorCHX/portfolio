@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', ()=> {
     const waitTime = 600
+    //image to show if the user d'ont have scroll after 6 secondes
     let scrollIcon = document.querySelector('#scroll-img');
     scrollIcon.style.transform = 'translateY('+50+'vh)'
+    //boolean who verify if the user have already scroll
     let haveAlredyScroll = false
     setTimeout(()=>{
+        // display the scroll img if the user doesn't scrolled
         if(!haveAlredyScroll)
         {
             scrollIcon.style.transform = 'translateY('+0+'vh)'
             let isDown = true
+            //mak a little moovment on the image
             setInterval(() => {
                 if(!haveAlredyScroll)
                 {
@@ -19,19 +23,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
         
     },6000)
     
+    //slides whith all the content
     let slides  = document.querySelectorAll('.slide_content')
+    //offset wich gonna be use to translate the slides
     const offset = slides[0].clientWidth + 1000
-    let nbSlides = slides.length
+
+    //boolean to verify if a slide is already in motion
     let inMotion = false;
 
+    //index on the slide list
     let index = 0
 
+    //navigation buttons
     let about_me_btn = document.querySelector('#about-me-btn')
     let projects_btn = document.querySelector('#projects-btn')
-
+    
+    //list to remember the position of each slides to be sure that 2 slides will never intersect
     let directions = []
 
-    //(telephone)
     if(window.innerWidth > 765)
     {
         //-------------------Placement des slides en aleatoire sur grand ecran
@@ -39,8 +48,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         for (let slide of slides)
         {
             translateRandom(slide, offset, directions, index)
-            // console.log(directions)
-            slide.classList.add('right')
             index++
         }
         index = 0
@@ -85,7 +92,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         for (let slide of slides)
         {
             slide.style.transform = 'translateY('+offset+'px)'
-            // console.log(directions)
             index++
         }
         index = 0
@@ -139,7 +145,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         if(activeSlide) {
             translateRandom(activeSlide, offset, directions, index-1)
         }
-        index = index>=nbSlides+1 ? nbSlides+1 : index+1   
+        index = index>=slides.length+1 ? slides.length+1 : index+1   
     }
 
     function backOff(){ 
@@ -200,7 +206,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         if(activeSlide) {
             activeSlide.style.transform = 'translateY(-'+offset+'px)'
         }
-        index = index>=nbSlides+1 ? nbSlides+1 : index+1
+        index = index>=slides.length+1 ? slides.length+1 : index+1
         
     }
     function backOffTactile(){ 
@@ -242,9 +248,9 @@ function translateRandom(slide, offset, directions, index)
     while(directions[index-1] == directions[index] || directions[index+1] == directions[index])
         directions[index] = (directions[index]+1)%3
         
-        if(directions[index] == 0) {
-            slide.style.transform = 'translateX('+offset+'px)'
-        } else if(directions[index] == 1) {
+    if(directions[index] == 0) {
+        slide.style.transform = 'translateX('+offset+'px)'
+    } else if(directions[index] == 1) {
         slide.style.transform = 'translateY('+offset+'px)'
     } else if(directions[index] == 2) {
         slide.style.transform = 'translateX(-'+offset+'px)'

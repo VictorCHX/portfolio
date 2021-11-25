@@ -11,4 +11,25 @@ document.addEventListener('DOMContentLoaded', ()=> {
             cursor.style.top = posY+ "px";
         });
     }
+    let values = document.querySelectorAll(".value")
+    let bars = document.querySelectorAll(".bar_skill")
+    for(i in values) {
+        bars[i].style.width = values[i].textContent +"%"
+    }
 })
+
+function create(tag, parent, content=null, classs=null, id=null) {
+
+    let element = document.createElement(tag)
+
+    if (content)
+        element.appendChild(document.createTextNode(content))
+    if (id)
+        element.id = id
+    if (classs)
+        element.classList.add(classs)
+
+    parent.appendChild(element)
+
+    return element
+}
