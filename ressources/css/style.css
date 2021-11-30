@@ -24,16 +24,22 @@
     top: -100vh;
     mix-blend-mode: difference;
     background-color: white;
+    pointer-events: none
 }
 
 a {
     
     text-decoration: none;
     color: var(--main-color-text);
+    transition: 1s;
+}
+
+a:hover {
+    color: #136fd8;
 }
 
 p {
-    font-size: 18px;
+    font-size: clamp(15px, 1.7vw,17px);
 }
 
 body {
@@ -172,8 +178,7 @@ footer {
     transition: 2s;
 }
 #scroll-img img{
-    width: 10vw;
-    height: 10vw;
+    height: 13vh;
      
 }
 
@@ -266,7 +271,5 @@ li {
         text-align: left;
     }
 
-    p {
-        font-size:13px;
-    }
+  
 }

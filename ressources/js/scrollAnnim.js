@@ -183,10 +183,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     firstEvent = true
                 }, waitTime)
                 if(lastTouchY > e.targetTouches[0].clientY) {
-                    console.log("scroll up");
                     advanceTactile()
                 } else {
-                    console.log("scroll down");
                     backOffTactile()
                 }
             }
