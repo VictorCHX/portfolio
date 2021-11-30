@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=> {
 
+    //handle cursor div
     let cursor = document.querySelector("#cursor");
     let cursorWidth = cursor.clientWidth/2
     window.addEventListener("mousemove", e => {
@@ -9,10 +10,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
         cursor.style.top = posY+ "px";
     });
 
+    document.addEventListener("touchstart", ()=>{
+        cursor.style.display = "none";
+    })
+
+    //handle skill bars
     let values = document.querySelectorAll(".value")
     let bars = document.querySelectorAll(".bar_skill")
     for(i in values) {
-        if(values[i].width)
+        if(values[i].textContent)
             bars[i].style.width = values[i].textContent +"%"
     }
 

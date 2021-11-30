@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //list to remember the position of each slides to be sure that 2 slides will never intersect
     let directions = []
 
-    if(window.innerWidth > 765)
+    if(window.innerWidth > window.innerHeight)
     {
         //-------------------Placement des slides en aleatoire sur grand ecran
         
