@@ -6,14 +6,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     let canvas =  document.querySelector("#grid-canvas")
     
-    // ...then set the internal size to match
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    let circles = []
+    initCanvas(canvas)
+    
     let ctx = canvas.getContext('2d');
+    let circles = []
         
     displayGrid(canvas, ctx)
     //after(canvas, ctx)
+
+    window.addEventListener('resize', initCanvas)
 
     function drawBalls() {
         for(let circle of circles) {
@@ -63,6 +64,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
 
     })
+
+    function initCanvas() {
+        // ...then set the internal size to match
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
     
     setInterval(draw, 5);
 })

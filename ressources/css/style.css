@@ -196,12 +196,13 @@ footer {
 
 .slide_content .content {
     padding: 1vw;
+    padding-bottom: 3vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 .slide_content .content > div {
-    padding: 5vh;
+    padding: 1vh;
     text-align: justify;
     align-items: center;
     width: 100%;
@@ -269,9 +270,10 @@ li {
     .slide_content h2 {
         font-size: 1.5em;
     }
-    .slide_content img {
+    .slide_content .not-important {
         display: none;
     }
+
 
     .slide_content .content > div {
         padding: 2vw;
