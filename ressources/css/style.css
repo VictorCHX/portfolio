@@ -113,22 +113,15 @@ aside {
     flex-direction: column;
 }
 
-footer {
+.footer {
     display: flex;
-    flex-direction: column;
-    font-size: 1vw;
+    flex-direction: row;
+    justify-content:space-around;
 }
 
-.footer div {
-    display: flex;
-    align-items: center;
-    color: var(--main-color-text);
-    padding:1vw;
-    
-}
 .footer div img{
     padding: 0.5vw;
-    width: 2vw;
+    width: 6vh;
 }
 
 .menu_link {
@@ -182,6 +175,14 @@ footer {
      
 }
 
+#copied-msg {
+    position: absolute;
+    bottom: 8vh;
+    left: 1vw;
+    color: #80ed8d;
+    z-index: 10;
+}
+
 
 .slide_content{
     width: 70%;
@@ -227,7 +228,7 @@ footer {
     height: 100%;
     padding: 1vw;
 }
-.value {
+.display-none {
    display: none;
 }
 h2 {

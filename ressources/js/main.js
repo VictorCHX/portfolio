@@ -23,7 +23,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
         bars[i].style.width = values[i].textContent +"%"
     }
 
-
+    let copiedMsg = document.querySelector('#copied-msg');
+    setTimeout(()=>{
+        copiedMsg.classList.remove("display-none")
+    }, 3000)
+    copiedMsg.style.transform = 'translateX(-'+50+'vw)'
     let inconMail = document.querySelector("#mailIcon")
     
     inconMail.addEventListener("click", ()=>{
@@ -33,22 +37,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
         range.selectNode(fromElement);
         selection.removeAllRanges();
         selection.addRange(range);
-
-        try {
-            // Exécution de la commande de copie
-            var result = document.execCommand('copy');
-            if (result) {
-                // La copie a réussi
-                alert('Copié !');
-            }
-        } catch(err) {
-            // Une erreur est surevnue lors de la tentative de copie
-            alert(err);
+        console.log(selection);
+        var result = document.execCommand('copy');
+        if (result) {
+            console.log(result)
+            copiedMsg.style.transform = 'translateX(0)'
+            setTimeout(()=>{
+                copiedMsg.style.transform = 'translateX(-'+50+'vw)'
+            }, 3000)
         }
     })
-
-    
-
 
 })
 
