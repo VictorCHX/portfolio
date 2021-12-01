@@ -24,10 +24,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 
     let copiedMsg = document.querySelector('#copied-msg');
-    setTimeout(()=>{
-        copiedMsg.classList.remove("display-none")
-    }, 3000)
-    copiedMsg.style.transform = 'translateX(-'+50+'vw)'
     let inconMail = document.querySelector("#mailIcon")
     
     inconMail.addEventListener("click", ()=>{
@@ -41,9 +37,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
         var result = document.execCommand('copy');
         if (result) {
             console.log(result)
-            copiedMsg.style.transform = 'translateX(0)'
+            copiedMsg.classList.remove("display-none")
             setTimeout(()=>{
-                copiedMsg.style.transform = 'translateX(-'+50+'vw)'
+                copiedMsg.classList.add("display-none")
             }, 3000)
         }
     })
