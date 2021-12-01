@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         {
             scrollIcon.style.transform = 'translateY('+0+'vh)'
             let isDown = true
-            //mak a little moovment on the image
+            //make a little mouvment on the image
             setInterval(() => {
                 if(!haveAlredyScroll)
                 {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 if(activeSlide) {
                     translateRandom(activeSlide, offset, directions, index-1)
                 }
-                index = 4
+                index = 6
                 advance()
             }
         })

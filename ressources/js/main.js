@@ -27,16 +27,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let inconMail = document.querySelector("#mailIcon")
     
     inconMail.addEventListener("click", ()=>{
+        //------------Code récupéré pour copier(Surement améliorable)-----
         let fromElement = document.querySelector("#mail");
         let range = document.createRange();
         let selection = window.getSelection();
         range.selectNode(fromElement);
         selection.removeAllRanges();
         selection.addRange(range);
-        console.log(selection);
         var result = document.execCommand('copy');
+        //------------------------------
         if (result) {
-            console.log(result)
+            // Affichage et disparition d'un message quand on arrive bien à copier le texte
             copiedMsg.classList.remove("display-none")
             setTimeout(()=>{
                 copiedMsg.classList.add("display-none")
@@ -45,19 +46,3 @@ document.addEventListener('DOMContentLoaded', ()=> {
     })
 
 })
-
-function create(tag, parent, content=null, classs=null, id=null) {
-
-    let element = document.createElement(tag)
-
-    if (content)
-        element.appendChild(document.createTextNode(content))
-    if (id)
-        element.id = id
-    if (classs)
-        element.classList.add(classs)
-
-    parent.appendChild(element)
-
-    return element
-}
