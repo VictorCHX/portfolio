@@ -14,13 +14,40 @@ document.addEventListener('DOMContentLoaded', ()=> {
         cursor.style.display = "none";
     })
 
+    
     //handle skill bars
     let values = document.querySelectorAll(".value")
     let bars = document.querySelectorAll(".bar_skill")
     for(i in values) {
         if(values[i].textContent)
-            bars[i].style.width = values[i].textContent +"%"
+        bars[i].style.width = values[i].textContent +"%"
     }
+
+
+    let inconMail = document.querySelector("#mailIcon")
+    
+    inconMail.addEventListener("click", ()=>{
+        let fromElement = document.querySelector("#mail");
+        let range = document.createRange();
+        let selection = window.getSelection();
+        range.selectNode(fromElement);
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        try {
+            // Exécution de la commande de copie
+            var result = document.execCommand('copy');
+            if (result) {
+                // La copie a réussi
+                alert('Copié !');
+            }
+        } catch(err) {
+            // Une erreur est surevnue lors de la tentative de copie
+            alert(err);
+        }
+    })
+
+    
 
 
 })
