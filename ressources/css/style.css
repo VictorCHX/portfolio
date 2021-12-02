@@ -38,6 +38,10 @@ a:hover {
     color: #136fd8;
 }
 
+.link-svg:hover {
+    filter: invert(30%) sepia(33%) saturate(5576%) hue-rotate(202deg) brightness(92%) contrast(85%);
+}
+
 p {
     font-size: clamp(15px, 1.7vw,17px);
 }
