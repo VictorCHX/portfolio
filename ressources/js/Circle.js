@@ -14,6 +14,9 @@ class Circle {
     speed = 2
     direction = 0
     color = 'white'
+
+    pointToGo = null
+
     constructor(pos, tileSize = 40) {
         this.pos = pos
         this.tileSize = tileSize
@@ -22,22 +25,46 @@ class Circle {
     }
 
     move() {
+
+        
         if(this.direction >= 2)
         {
             if(this.pos.x % tileSize == 1 ||this.pos.x % tileSize == 2)
             {
-                this.setRandomDirection()
-                this.avance()
+                if(this.pointToGo == null) {
+                    this.setRandomDirection()
+                } else {
+                    this.goToPoint()
+                }
             }
         } else {
             if(this.pos.y % tileSize == 1 ||this.pos.y % tileSize == 2)
             {
-                this.setRandomDirection()
-                this.avance()
+                if(this.pointToGo == null) {
+                    this.setRandomDirection()
+                } else {
+                    this.goToPoint()
+                }
             }
         }
-        
+       
         this.avance()
+    }
+
+    goToPoint() {
+        if(Math.abs(this.pointToGo.x-this.pos.x) < Math.abs(this.pointToGo.y-this.pos.y))
+        {
+            if(this.pointToGo.x > this.pos.x)
+                this.direction = this.directions.DROITE
+            else
+                this.direction = this.directions.GAUCHE
+        } else
+        {
+            if(this.pointToGo.y > this.pos.y)
+                this.direction = this.directions.BAS
+            else
+                this.direction = this.directions.HAUT
+        }
     }
 
     avance() {

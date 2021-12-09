@@ -12,7 +12,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let circles = []
         
     displayGrid(canvas, ctx)
-    //after(canvas, ctx)
+
+    canvas.addEventListener("click", (e)=>{
+        pos = {
+            x:e.offsetX,
+            y:e.offsetY
+        }
+        for(circle of circles) {
+            circle.pointToGo = pos
+        }
+    })
 
     window.addEventListener('resize', initCanvas)
 
@@ -70,6 +79,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
         canvas.width  = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
     }
+
+   
     
     setInterval(draw, 5);
 })
