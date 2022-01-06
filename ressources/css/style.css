@@ -12,6 +12,7 @@
     box-sizing: border-box;
     font-family: 'Inconsolata', monospace;
     overflow: hidden;
+    position: relative;
     cursor:none;
 }
 
