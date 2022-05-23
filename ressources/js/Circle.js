@@ -52,19 +52,19 @@ class Circle {
     }
 
     goToPoint() {
-        if(Math.abs(this.pointToGo.x-this.pos.x) < Math.abs(this.pointToGo.y-this.pos.y))
-        {
-            if(this.pointToGo.x > this.pos.x)
-                this.direction = this.directions.DROITE
-            else
-                this.direction = this.directions.GAUCHE
-        } else
-        {
-            if(this.pointToGo.y > this.pos.y)
-                this.direction = this.directions.BAS
-            else
-                this.direction = this.directions.HAUT
-        }
+        //if(Math.abs(this.pointToGo.x-this.pos.x) < Math.abs(this.pointToGo.y-this.pos.y))
+        //{
+          //  if(this.pointToGo.x > this.pos.x)
+            //    this.direction = this.directions.DROITE
+            //else
+              //  this.direction = this.directions.GAUCHE
+        //} else
+ //       {
+  //          if(this.pointToGo.y > this.pos.y)
+   //             this.direction = this.directions.BAS
+   //         else
+   //             this.direction = this.directions.HAUT
+  //      }
     }
 
     avance() {
